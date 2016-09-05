@@ -2,6 +2,12 @@
  * File:   audio.h
  * Audio engine for sample generation.
  *
+ * This compilation unit calculates and buffers the audio samples.
+ * Audio samples are calculated individually for each channel and are then
+ * superpositioned to form the final sample. After this the sample
+ * is stored in a FIFO buffer. Finally the sample can be accessed
+ * through the audio_pop_sample function.
+ *
  */
 
 #ifndef AUDIO_H
@@ -35,8 +41,6 @@ typedef enum audio_ch_nbr_t
 } audio_ch_nbr_t;
 
 
-
-
 // =============================================================================
 // Global variable declarations
 // =============================================================================
@@ -64,6 +68,7 @@ extern uint16_t g_audio_sample_buff_size;
  * @return void
  */
 void audio_init(void);
+
 
 /* *********************************************************
  *      Sample generation                                  *
